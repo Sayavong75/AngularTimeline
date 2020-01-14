@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Design général */
+.btnlist {
+    border: none;
+    background-color: #D1055D;
+    padding: 8px 10px;
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    margin: 15px;
+}
+
+
+/* Design top-bar */
+app-top-bar h1, .btnlist {
+    font-family: 'Bree Serif', serif;
+    text-align: center;
+}
+
+app-top-bar h1 {
+    color: #862E67;
+}
+
+app-top-bar .btnlist {
+    font-size: 20px;
+}
+
+app-top-bar div {
+    text-align: center;
+}
+
+/* Design timeline-liste */
+app-timeline-list table {
+    border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
+    border: 4px solid #862E67; /* auront une bordure de 1px */
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+app-timeline-list td, th /* Toutes les cellules des tableaux... */
+  {
+    border: 2px solid #862E67; /* auront une bordure de 1px */
+    color: #862E67;
+    text-align: center;
+    background-color: white;
+    padding:4px 10px;
+}
+
+app-timeline-list div {
+    text-align: center;
+}
+  

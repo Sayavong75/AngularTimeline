@@ -1,0 +1,31 @@
+<head><link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet"></head>
+
+<div><button class="btnlist" [routerLink]="['/']">Ajouter un timeline</button></div>
+
+<div>
+  <table>
+    <tr>
+      <th> Id </th>
+      <th> Nom </th>
+      <th> Catégorie </th>
+      <th> Date de création </th>
+      <th> Date de mise à jour </th>
+      <th> Nombre de cartes </th>
+      <th> Editer? </th>
+      <th> Jouer! </th>
+      <th> Supprimer? </th>
+    </tr>
+    <tr *ngFor="let timeline of timelineList">
+      <td> {{timeline.id}} </td>
+      <td> {{timeline.name }} </td>
+      <td> {{timeline.category}} </td>
+      <td> {{timeline.creationDate}} </td>
+      <td> {{timeline.updateDate}} </td>
+      <td> {{timeline.cardList.length}} </td>
+      <td href = ""> Editer </td>
+      <td><a routerLink="game"> Jouer </a></td>
+      <td><button class="btn liste"> Supprimer </button></td>
+    </tr>
+  </table>
+</div>
+
