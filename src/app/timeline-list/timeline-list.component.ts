@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimelinedataService } from '../timelinedata.service';
-import { CardInterface } from '../card-interface';
 import { TimelineInterface } from '../timeline-interface';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timeline-list',
@@ -13,28 +10,29 @@ import { tap } from 'rxjs/operators';
 })
 export class TimelineListComponent implements OnInit {
 
-  timelineList: TimelineInterface[];
-  
-  // constructor(
-  //   private timeLineDataService: TimelinedataService
-  // ) { }
-  constructor(private httpClient: HttpClient,
-    private timeLineDataService : TimelinedataService) {
-     
-    this.getTimeLineTest();
+  // Création d'une variable timelineList qui sera un observable et qui reçoit l'observable du service
+  timelineList: Observable<TimelineInterface[]>;
+  timeline : TimelineInterface;
+
+  // Alimentation de la liste des timeline avec le retour "observable" du service
+  constructor(private timeLineDataService : TimelinedataService) {
+    this.timelineList = timeLineDataService.getTimeLineList();
+
   }
 
-  ngOnInit() {} 
+  ngOnInit() {
+  } 
   
-  getTimeLineTest() {
-    this.httpClient.get<TimelineInterface[]>('http://localhost:8080/api/timeline').subscribe(
-      value => this.timelineList = value
-      );
-  }
-
-  // getTimeLineList (){
-  //   return this.timeLineDataService.getTimeLineTest().pipe(tap(value => this.timelineList = value)).subscribe;
-  //   console.log(this.timelineList);
+  // EXEMPLE AVEC LA METHODE .SUBSCRIBE
+  // getTimeLineList() {
+  //   this.httpClient.get<TimelineInterface[]>('http://localhost:8080/api/timeline').subscribe(
+  //     value => this.timelineList = value
+  //     );
   // }
+
+  getId(timelineId) {
+    console.log("get Id : " + timelineId);
+    return timelineId;
+  }
 
 }

@@ -15,7 +15,7 @@
       <th> Jouer! </th>
       <th> Supprimer? </th>
     </tr>
-    <tr *ngFor="let timeline of timelineList">
+    <tr *ngFor="let timeline of timelineList | async">
       <td> {{timeline.id}} </td>
       <td> {{timeline.name }} </td>
       <td> {{timeline.category}} </td>
@@ -23,9 +23,8 @@
       <td> {{timeline.updateDate}} </td>
       <td> {{timeline.cardList.length}} </td>
       <td href = ""> Editer </td>
-      <td><a routerLink="game"> Jouer </a></td>
+      <td><a [routerLink]= "['/timelineList', timeline.id]" (click) = getId(timeline.id)> Jouer </a></td>
       <td><button class="btn liste"> Supprimer </button></td>
     </tr>
   </table>
 </div>
-

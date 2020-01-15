@@ -1,0 +1,19 @@
+#cardDateInput {
+    text-align: center;
+}
+
+.guessCardBlock, .guessedCardBlock {
+    border : 2px solid;
+    background-color: grey;
+    width : 400px;
+    height: 400px;
+    margin: 5%;
+    padding: 2%;
+}
+    
+.guessCardPicture, .guessedCardPicture {
+    width : 80%;
+    height: 80%;
+    margin: 5%;
+    padding: 1%;
+}

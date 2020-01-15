@@ -1,1 +1,35 @@
-<p>cardgame works!</p>
+
+<!-- Formulaire de saisie Date -->
+<form [formGroup]="cardDateForm">
+    <div id="cardDateInput">
+        <input id="cardDate" type="text" min="0150-01-01" max="2020-12-31" placeholder='Entrez la date' formControlName="dateToGuess">
+        <button (click) ="onGuess(guessDate)"> Deviner </button>
+    </div>
+</form>
+
+<div>
+    <h2> Carte a deviner </h2>    
+</div>
+
+<!-- Carte à deviner -->
+<div class = "guessCardBlock">  
+
+    <h2> {{ cardToplay.name }} </h2>
+    
+    <img class="guessCardPicture" src = {{cardToplay.imageUrl}} alt = "carte a deviner">
+    
+    <h3> {{ cardToplay.description }} </h3>
+</div>
+
+<!-- Bloc de cartes devinées -->
+<div class = "guessedCardBlock" *ngFor = "let guessedCard of guessedCardList , let i =index">
+
+    <h2> {{ guessedCard.name }} </h2>
+
+    <p> {{ guessedCard.date }} </p>
+
+    <img class = "guessedCardPicture" src =  {{guessedCard.imageUrl}} alt = "carte devinee">
+
+    <h3> {{guessedCard.description}} </h3> 
+
+</div>

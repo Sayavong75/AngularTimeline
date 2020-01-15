@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
@@ -19,9 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: TimelineListComponent},
-      { path: 'game', component: CardgameComponent},
+      { path: 'timelineList/:timelineId', component: CardgameComponent},    // chemin du path correspond à ce qui est saisi dans "route.param"  
       ]
 
     )
