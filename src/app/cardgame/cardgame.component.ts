@@ -22,54 +22,61 @@ export class CardgameComponent implements OnInit {
   timeline : TimelineInterface;
 
   constructor(private cardDataService: CarddataService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
-    // CAS POUR OK + KO
-    // constructor(private cardDataService: CarddataService) {
-    //   cardDataService.getCardList().subscribe(cardList => {
-    //     console.log(cardList);
-    //     this.cardList = cardList;
-    //   });
-   }
-
-  ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.cardDataService.getCardList(+params.get('timelineId')).subscribe(cardList => {
           console.log(cardList);
             this.cardList = cardList;
             this.cardListLength = this.cardList.length - 1;
             this.cardToplay = this.randomCard(this.cardList);
+            console.log("nom carte " + this.cardToplay.name);
           });
-          this.cardDateForm = this.formBuilder.group({
-            dateToGuess: ''
-          });
+          // this.cardDateForm = this.formBuilder.group({
+          //   dateToGuess: ''
+          // });
+
     });
+    // CAS POUR OK + KO
+    // constructor(private cardDataService: CarddataService) {
+    //   cardDataService.getCardList().subscribe(cardList => {
+    //     console.log(cardList);
+    //     this.cardList = cardList;
+    //   });
+    this.cardDateForm = this.formBuilder.group({
+      dateToGuess: ''
+    });
+
+   }
+
+  ngOnInit() {
+    // this.route.paramMap.subscribe(params => {
+    //   this.cardDataService.getCardList(+params.get('timelineId')).subscribe(cardList => {
+    //       console.log(cardList);
+    //         this.cardList = cardList;
+    //         this.cardListLength = this.cardList.length - 1;
+    //         this.cardToplay = this.randomCard(this.cardList);
+    //       });
+    //       this.cardDateForm = this.formBuilder.group({
+    //         dateToGuess: ''
+    //       });
+    // });
   }
 
-  randomCard(cardList){       
-    console.log("max = " + this.cardListLength);
-    return cardList[this.getRandomInt(this.cardListmin, cardList.length)];
+  randomCard(cardList) : CardInterface{       
+    return cardList[this.getRandomInt(this.cardListmin, this.cardListLength)];
   }
 
   getRandomInt(cardListmin, cardListLength){
 
     // return Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin)) + cardListmin);
-    let randomNum = Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin)) + cardListmin);
-    console.log("random calcul : " + randomNum);
+    let randomNum = Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin + 1)) + cardListmin);
     return randomNum;
-    // return Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin)) + cardListmin);
-    // return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  onGuess(dateToGuess) {
-
-    let dateForm = Date.parseDate(this.cardToplay.date);
-    if (dateToGuess == dateForm {
-      this.guessedCardList.push(this.cardToplay);
-      this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);
-  
-    })
-
-
-    console.log (dateToGuess);
-
+  onGuess(dateInput) {
+    console.log("test datetoguess " + dateInput.dateToGuess);
+    // let dateForm = Date.parse(this.cardToplay.date);
+    // if (dateInput == dateForm {
+    //   this.guessedCardList.push(this.cardToplay);
+    //   this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);}
   }
 }
