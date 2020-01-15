@@ -1,9 +1,10 @@
 
 <!-- Formulaire de saisie Date -->
-<form [formGroup]="cardDateForm">
+<form [formGroup]="cardDateForm" (ngSubmit) = "onGuess(cardDateForm)">
     <div id="cardDateInput">
-        <input id="cardDate" type="text" min="0150-01-01" max="2020-12-31" placeholder='Entrez la date' formControlName="dateToGuess">
-        <button (click) ="onGuess(guessDate)"> Deviner </button>
+        <input id="cardDate" type="text" min="0150-01-01" max="2020-12-31"
+         placeholder='Entrez la date' formControlName="dateToGuess" [ngvalue] ="valDate">
+        <button class= "button" type="submit"> Deviner </button>
     </div>
 </form>
 

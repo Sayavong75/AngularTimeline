@@ -17,22 +17,11 @@ export class CardgameComponent implements OnInit {
   cardListLength : number ;
   cardListmin : number = 0;
   cardToplay :CardInterface ;
-
+  guessedCardList: CardInterface[]  = [];
   timelineList: TimelineInterface[];
   timeline : TimelineInterface;
 
   constructor(private cardDataService: CarddataService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
-    // cardDataService.getCardList().subscribe(cardList => {
-    //   console.log(cardList);
-    //      this.cardList = cardList;
-    //      this.cardListLength = this.cardList.length - 1;
-    //      this.cardToplay = this.randomCard(this.cardList);
-    //   });
-    //   this.cardDateForm = this.formBuilder.group({
-    //     dateToGuess: ''
-    //   });
-      
-
     // CAS POUR OK + KO
     // constructor(private cardDataService: CarddataService) {
     //   cardDataService.getCardList().subscribe(cardList => {
@@ -45,9 +34,9 @@ export class CardgameComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.cardDataService.getCardList(+params.get('timelineId')).subscribe(cardList => {
           console.log(cardList);
-             this.cardList = cardList;
-             this.cardListLength = this.cardList.length - 1;
-             this.cardToplay = this.randomCard(this.cardList);
+            this.cardList = cardList;
+            this.cardListLength = this.cardList.length - 1;
+            this.cardToplay = this.randomCard(this.cardList);
           });
           this.cardDateForm = this.formBuilder.group({
             dateToGuess: ''
@@ -56,14 +45,8 @@ export class CardgameComponent implements OnInit {
   }
 
   randomCard(cardList){       
-    // this.cardList.subscribe(value => this.cardList = value)
-
-    //this.indCardList = this.getRandomInt(this.cardListmin, cardList.length);
     console.log("max = " + this.cardListLength);
-
-    //console.log("IDcard = " + this.indCardList);
     return cardList[this.getRandomInt(this.cardListmin, cardList.length)];
-    // return this.cardToplay;
   }
 
   getRandomInt(cardListmin, cardListLength){
@@ -77,7 +60,16 @@ export class CardgameComponent implements OnInit {
   }
 
   onGuess(dateToGuess) {
-    console.log (" test  date saisie ");
-  }
 
+    let dateForm = Date.parseDate(this.cardToplay.date);
+    if (dateToGuess == dateForm {
+      this.guessedCardList.push(this.cardToplay);
+      this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);
+  
+    })
+
+
+    console.log (dateToGuess);
+
+  }
 }
