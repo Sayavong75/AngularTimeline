@@ -55,7 +55,7 @@ export class CardgameComponent implements OnInit {
 
   onGuess(formData) {
 
-    if (this.cardList.length != 0) {
+    if (this.cardList.length !== 0) {
 
       let dateCardToPlay = this.cardToplay.date;
       let yearCardToPlay = dateCardToPlay.substring(0, 4);
@@ -79,8 +79,9 @@ export class CardgameComponent implements OnInit {
         }, 300);
         // alert('Year values are not matching');
       }
-      this.cardDateForm.reset();
     }
-
+    else {
+      alert('No cards to play in this timeline');
+    }
   }
 }
