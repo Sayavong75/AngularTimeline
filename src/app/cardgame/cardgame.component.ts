@@ -61,6 +61,7 @@ export class CardgameComponent implements OnInit {
 
   getRandomInt(cardListmin, cardListLength) {
     let randomNum = Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin + 1)) + cardListmin);
+    console.log("nombre d'objets :" + cardListLength);
     return randomNum;
   }
 
@@ -86,6 +87,4 @@ export class CardgameComponent implements OnInit {
 
 
   }
-
-    
 }
