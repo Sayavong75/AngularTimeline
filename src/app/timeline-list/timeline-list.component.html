@@ -24,7 +24,7 @@
       <td> {{timeline.cardList.length}} </td>
       <td href = ""> Editer </td>
       <td><a [routerLink]= "['/timelineList', timeline.id]" (click) = getId(timeline.id)> Jouer </a></td>
-      <td><button class="btn liste"> Supprimer </button></td>
+      <td><button class="btn liste" (click) = "onDeleteTimeline(timeline.id)"> Supprimer </button></td>
     </tr>
   </table>
 </div>

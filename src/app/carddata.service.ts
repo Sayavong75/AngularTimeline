@@ -19,7 +19,6 @@ export class CarddataService {
   // }
 
   getCardList(tid: number): Observable<CardInterface[]> {
-  
     return this.httpClient.get<CardInterface[]>('http://localhost:8080/api/timeline/' + tid + '/card');
   }
 }

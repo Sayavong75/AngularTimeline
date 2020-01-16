@@ -3,6 +3,7 @@
 }
 
 .guessCardBlock, .guessedCardBlock {
+    border-radius: 3%;
     text-align: center;
     border : 2px solid;
     background-color: lightgrey;

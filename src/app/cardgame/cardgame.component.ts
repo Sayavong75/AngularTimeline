@@ -37,10 +37,10 @@ export class CardgameComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.cardDataService.getCardList(+params.get('timelineId')).subscribe(cardList => {
           console.log(cardList);
-            this.cardList = cardList;
-            this.cardListLength = this.cardList.length - 1;
-            this.cardToplay = this.randomCard(this.cardList);
-          });
+          this.cardList = cardList;
+          this.cardListLength = this.cardList.length - 1;
+          this.cardToplay = this.randomCard(this.cardList);
+        });
     });
   }
 
@@ -83,5 +83,6 @@ export class CardgameComponent implements OnInit {
     else {
       alert('No cards to play in this timeline');
     }
+    this.cardDateForm.reset();
   }
 }
