@@ -35,4 +35,13 @@ export class TimelineListComponent implements OnInit {
     return timelineId;
   }
 
+  onDeleteTimeline(timelineId) {
+    // Appel le service pour supprimer le table timeline du serveur
+    // Si le delete est OK on rappelle la liste des timelines de la table
+    // On refait un subscribe pour s'assurer de l'intégralité de la table
+    // Le retour effectif de la méthode timeLineDataService.delTimelineList est void qui permet de déclencher la suite de l'action
+    console.log(timelineId);
+    this.timeLineDataService.delTimelineList(timelineId).subscribe( ()  => this.timelineList = this.timeLineDataService.getTimeLineList());
+  }
+
 }

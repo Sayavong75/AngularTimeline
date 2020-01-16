@@ -20,18 +20,7 @@ export class TimelinedataService {
     return this.httpClient.get<TimelineInterface[]>('http://localhost:8080/api/timeline'); 
   }
 
-// @Injectable()
-// export class DataService {
-//   constructor(protected http: HttpClient) {}
-
-//   public getArticles(): Observable<Article[]> {
-//     return this.http.get('http://localhost:3000/articles/').pipe(
-//       map(
-//         (jsonArray: Object[]) => jsonArray.map(jsonItem => Article.fromJson(jsonItem))
-//       )
-//     );
-//   }
-// }
-
-
+  delTimelineList(timelineId: number): Observable<any> {
+    return this.httpClient.delete<TimelineInterface[]>('http://localhost:8080/api/timeline/' + timelineId);
+  }
 }
