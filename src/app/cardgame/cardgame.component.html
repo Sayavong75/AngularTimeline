@@ -28,14 +28,17 @@
     <h2> Carte(s) trouvées </h2>    
 </div>
 
-<div class = "guessedCardBlock" *ngFor = "let guessedCard of guessedCardList , let i =index">
+<div class = "guessedCardDiv">
+    <div class = "guessedCardBlock" *ngFor = "let guessedCard of guessedCardList , let i =index">
 
-    <h2> {{ guessedCard.name }} </h2>
-
-    <h2> {{ guessedCard.date }} </h2>
-
-    <img class = "guessedCardPicture" src =  {{guessedCard.imageUrl}} alt = "carte devinee">
-
-    <h3> {{guessedCard.description}} </h3> 
-
+        <h2> {{ guessedCard.name }} </h2>
+    
+        <h2> {{ guessedCard.date }} </h2>
+    
+        <img class = "guessedCardPicture" src =  {{guessedCard.imageUrl}} alt = "carte devinee">
+    
+        <h3> {{guessedCard.description}} </h3> 
+    
+    </div>
 </div>
+

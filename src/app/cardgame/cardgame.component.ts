@@ -22,14 +22,6 @@ export class CardgameComponent implements OnInit {
   timeline : TimelineInterface;
 
   constructor(private cardDataService: CarddataService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(params => {
-      this.cardDataService.getCardList(+params.get('timelineId')).subscribe(cardList => {
-          console.log(cardList);
-            this.cardList = cardList;
-            this.cardListLength = this.cardList.length - 1;
-            this.cardToplay = this.randomCard(this.cardList);
-          });
-    });
     // CAS POUR OK + KO
     // constructor(private cardDataService: CarddataService) {
     //   cardDataService.getCardList().subscribe(cardList => {
@@ -42,17 +34,14 @@ export class CardgameComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   this.cardDataService.getCardList(+params.get('timelineId')).subscribe(cardList => {
-    //       console.log(cardList);
-    //         this.cardList = cardList;
-    //         this.cardListLength = this.cardList.length - 1;
-    //         this.cardToplay = this.randomCard(this.cardList);
-    //       });
-    //       this.cardDateForm = this.formBuilder.group({
-    //         dateToGuess: ''
-    //       });
-    // });
+    this.route.paramMap.subscribe(params => {
+      this.cardDataService.getCardList(+params.get('timelineId')).subscribe(cardList => {
+          console.log(cardList);
+            this.cardList = cardList;
+            this.cardListLength = this.cardList.length - 1;
+            this.cardToplay = this.randomCard(this.cardList);
+          });
+    });
   }
 
   randomCard(cardList): CardInterface {
@@ -61,30 +50,37 @@ export class CardgameComponent implements OnInit {
 
   getRandomInt(cardListmin, cardListLength) {
     let randomNum = Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin + 1)) + cardListmin);
-    console.log("nombre d'objets :" + cardListLength);
     return randomNum;
   }
 
-  onGuess(dateInput) {
-    var dateCardToPlay = this.cardToplay.date;
-    var yearCardToPlay = dateCardToPlay.substring(0, 4);
-    console.log(yearCardToPlay);
-    let yearForm = dateInput.dateToGuess;
-    if (yearCardToPlay == yearForm) {
-      this.guessedCardList.push(this.cardToplay);
-      this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);
-      this.cardToplay = this.randomCard(this.cardList);
-      console.log('Year values are matching');
-    } else
-    {
-      console.log('Year values are not matching');
+  onGuess(formData) {
+
+    if (this.cardList.length != 0) {
+
+      let dateCardToPlay = this.cardToplay.date;
+      let yearCardToPlay = dateCardToPlay.substring(0, 4);
+
+      console.log(yearCardToPlay);
+      let yearForm = formData.dateToGuess;
+      if (yearCardToPlay === yearForm) {
+        this.guessedCardList.push(this.cardToplay);
+        this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);
+        this.cardListLength = this.cardList.length - 1;
+        this.cardToplay = this.randomCard(this.cardList);
+        console.log('Year values are matching');
+      }
+      else {
+        let form = document.getElementById('cardDateInput');
+        // Add a class that defines an animation
+        form.classList.add('error');  
+        // remove the class after the animation completes
+        setTimeout(function() {
+          form.classList.remove('error');
+        }, 300);
+        // alert('Year values are not matching');
+      }
+      this.cardDateForm.reset();
     }
-
-    // let dateForm = Date.parse(this.cardToplay.date);
-    // if (dateInput == dateForm {
-    //   this.guessedCardList.push(this.cardToplay);
-    //   this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);}
-
 
   }
 }
