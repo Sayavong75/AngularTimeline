@@ -28,12 +28,7 @@ export class CardgameComponent implements OnInit {
             this.cardList = cardList;
             this.cardListLength = this.cardList.length - 1;
             this.cardToplay = this.randomCard(this.cardList);
-            console.log("nom carte " + this.cardToplay.name);
           });
-          // this.cardDateForm = this.formBuilder.group({
-          //   dateToGuess: ''
-          // });
-
     });
     // CAS POUR OK + KO
     // constructor(private cardDataService: CarddataService) {
@@ -41,11 +36,10 @@ export class CardgameComponent implements OnInit {
     //     console.log(cardList);
     //     this.cardList = cardList;
     //   });
-    this.cardDateForm = this.formBuilder.group({
+    this.cardDateForm = this.formBuilder.group ({
       dateToGuess: ''
     });
-
-   }
+  }
 
   ngOnInit() {
     // this.route.paramMap.subscribe(params => {
@@ -61,22 +55,37 @@ export class CardgameComponent implements OnInit {
     // });
   }
 
-  randomCard(cardList) : CardInterface{       
+  randomCard(cardList): CardInterface {
     return cardList[this.getRandomInt(this.cardListmin, this.cardListLength)];
   }
 
-  getRandomInt(cardListmin, cardListLength){
-
-    // return Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin)) + cardListmin);
+  getRandomInt(cardListmin, cardListLength) {
     let randomNum = Math.floor(Math.random() * (Math.floor(cardListLength - cardListmin + 1)) + cardListmin);
     return randomNum;
   }
 
   onGuess(dateInput) {
-    console.log("test datetoguess " + dateInput.dateToGuess);
+    var dateCardToPlay = this.cardToplay.date;
+    var yearCardToPlay = dateCardToPlay.substring(0, 4);
+    console.log(yearCardToPlay);
+    let yearForm = dateInput.dateToGuess;
+    if (yearCardToPlay == yearForm) {
+      this.guessedCardList.push(this.cardToplay);
+      this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);
+      this.cardToplay = this.randomCard(this.cardList);
+      console.log('Year values are matching');
+    } else
+    {
+      console.log('Year values are not matching');
+    }
+
     // let dateForm = Date.parse(this.cardToplay.date);
     // if (dateInput == dateForm {
     //   this.guessedCardList.push(this.cardToplay);
     //   this.cardList.splice(this.cardList.indexOf(this.cardToplay), 1);}
+
+
   }
+
+    
 }

@@ -3,17 +3,25 @@
 }
 
 .guessCardBlock, .guessedCardBlock {
+    text-align: center;
     border : 2px solid;
-    background-color: grey;
-    width : 400px;
-    height: 400px;
-    margin: 5%;
-    padding: 2%;
+    background-color: lightgrey;
+    width : 320px;
+    height: 380px;
+    margin: 0 auto;
+    padding: 10px;
 }
     
 .guessCardPicture, .guessedCardPicture {
-    width : 80%;
-    height: 80%;
-    margin: 5%;
-    padding: 1%;
+    width : 200px;
+    height: 200px;
+    margin: 5px;
+    padding: 2px;
+    display: block;
+    margin: 0 auto;
+}
+
+h2, h3 {
+    font-family: 'Bree Serif', serif;
+    text-align: center;
 }
